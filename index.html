@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator | By Rafay Malik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #results {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #weight-guide {
+            margin-top: 20px;
+            text-align: left;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h1>BMI Calculator</h1>
+        <p><label>HEIGHT IN CM:</label><input type="text" id='height'></p>
+        <p><label>WEIGHT IN KG:</label><input type="text" id='weight'></p>
+        <button onclick="calculateBMI()">CALCULATE</button>
+        <div id="results"></div>
+        <div id="weight-guide">
+            <h3>BMI WEIGHT GUIDE</h3>
+            <p>UNDERWEIGHT = Less than 18.6</p>
+            <p>NORMAL RANGE = 18.6 to 24.9</p>
+            <p>OVERWEIGHT = Greater than 24.9</p>
+        </div>
+    </form>
+
+    <script>
+        const form = document.querySelector('form')
+        form.addEventListener('submit', function(e){
+            e.preventDefault()
+            const height = parseInt(document.querySelector('#height').value)
+            const weight = parseInt(document.querySelector('#weight').value)
+            const results = document.querySelector('#results')
+
+            if(height === '' || height < 0 || isNaN(height) || height === String){
+                results.innerHTML = `! please give me a valid height`
+            }else if(weight === '' || weight< 0 || isNaN(weight) || weight=== String){
+                results.innerHTML = `! please give me a valid weight`
+            }else{
+                const bmi =(weight / ((height*height)/10000)).toFixed(2)
+                results.innerHTML = `<span>${bmi}</span>`;
+            }
+        })
+    </script>
+</body>
+</html>
